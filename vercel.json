@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "functions": {
+    "api/visualize.py": {
+      "maxDuration": 60
+    }
+  }
+}

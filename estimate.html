@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Free Estimate | Redwood Landscaping LLC | Slater-Marietta SC</title>
+<meta name="description" content="Request a free landscaping estimate from Redwood Landscaping LLC. No obligation — honest pricing from your local Upstate SC team. Tell us about your project and we'll call within 24 hours.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://redwood-site-jade.vercel.app/estimate.html">
+<meta property="og:title" content="Free Estimate | Redwood Landscaping LLC">
+<meta property="og:description" content="Get a free, no-obligation landscaping estimate. Honest pricing from your local Upstate SC team.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redwood-site-jade.vercel.app/estimate.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forest: { DEFAULT: '#2E5A3C', light: '#3A7B52', pale: '#E8F3EC', dark: '#1E3B28' },
+          gold: { DEFAULT: '#C8960C', light: '#E8C84A', dark: '#9B7400' },
+          cream: '#FFFDF7',
+        },
+        fontFamily: {
+          heading: ['"Playfair Display"', 'serif'],
+          body: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        animation: {
+          'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          'fade-in': 'fadeIn 0.9s ease forwards',
+          'scale-in': 'scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          'float': 'float 6s ease-in-out infinite',
+        },
+        keyframes: {
+          fadeUp: {
+            '0%': { opacity: '0', transform: 'translateY(40px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+          },
+          fadeIn: {
+            '0%': { opacity: '0' },
+            '100%': { opacity: '1' },
+          },
+          scaleIn: {
+            '0%': { opacity: '0', transform: 'scale(0.92)' },
+            '100%': { opacity: '1', transform: 'scale(1)' },
+          },
+          float: {
+            '0%, 100%': { transform: 'translateY(0px)' },
+            '50%': { transform: 'translateY(-12px)' },
+          },
+        },
+      }
+    }
+  }
+</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free Estimate — Redwood Landscaping LLC",
+  "description": "Request a free landscaping estimate from Redwood Landscaping LLC in Slater-Marietta, SC.",
+  "url": "https://redwood-site-jade.vercel.app/estimate.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Redwood Landscaping LLC",
+    "url": "https://redwood-site-jade.vercel.app/"
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+
+  .skip-link:focus { top: 0; }
+
+  .nav-glass {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #C8960C, #E8C84A, #C8960C);
+    border-radius: 2px;
+  }
+
+  /* Step indicators */
+  .step-indicator.active .step-dot { background-color: #2E5A3C; border-color: #2E5A3C; color: #FFF; }
+  .step-indicator.done .step-dot { background-color: #C8960C; border-color: #C8960C; color: #FFF; }
+  .step-indicator.active .step-text { color: #2E5A3C; font-weight: 600; }
+  .step-indicator.done .step-text { color: #C8960C; }
+  .progress-bar-segment.done { background-color: #C8960C; }
+
+  /* Form step sections */
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
+  /* Loading spinner */
+  .spinner {
+    width: 24px; height: 24px;
+    border: 3px solid rgba(46, 90, 60, 0.2);
+    border-top-color: #C8960C;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Checkbox tiles */
+  .service-checkbox { display: none; }
+  .service-tile {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 2px solid #e5e7eb;
+  }
+  .service-tile:hover { border-color: #C8960C; background-color: rgba(200, 150, 12, 0.04); }
+  .service-checkbox:checked + .service-tile {
+    border-color: #2E5A3C;
+    background-color: #E8F3EC;
+  }
+</style>
+</head>
+<body class="bg-white text-[#333] font-body antialiased overflow-x-hidden">
+
+<!-- Skip Navigation -->
+<a href="#main-content" class="skip-link fixed -top-24 left-4 bg-forest text-white px-4 py-2 rounded-b-lg z-[200] transition-all duration-200 font-semibold text-sm no-underline focus:top-0">Skip to main content</a>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="sticky top-0 z-[100] nav-glass" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 lg:h-18">
+      <a href="/" class="flex items-center gap-3 no-underline group" aria-label="Redwood Landscaping LLC Home">
+        <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="40" r="2.5" fill="#4A3728"/>
+          <rect x="22" y="28" width="4" height="14" rx="1" fill="#4A3728"/>
+          <path d="M6 26 L24 2 L42 26 L34 26 L24 10 L14 26Z" fill="#3A7B52"/>
+          <path d="M10 34 L24 10 L38 34 L30 34 L24 18 L18 34Z" fill="#2E5A3C"/>
+          <path d="M16 40 L24 22 L32 40Z" fill="#3A7B52"/>
+        </svg>
+        <div class="hidden sm:block">
+          <div class="text-white font-heading font-bold text-lg leading-tight tracking-wide">REDWOOD</div>
+          <div class="text-white/60 text-[10px] tracking-[0.2em] uppercase leading-tight">Landscaping LLC</div>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="/#services" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">Services</a>
+        <a href="/#gallery" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">Gallery</a>
+        <a href="/#testimonials" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">Reviews</a>
+        <a href="/#about" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">About</a>
+        <a href="/#faq" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">FAQ</a>
+        <a href="/#contact" class="px-4 py-2 text-sm font-light text-white/85 hover:text-white rounded-lg hover:bg-white/8 transition-all duration-300 no-underline tracking-wide">Contact</a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="tel:+18643574530" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white border border-white/20 rounded-full hover:bg-white/10 hover:border-white/30 transition-all duration-300 no-underline">
+          <i class="fa-solid fa-phone text-xs"></i>
+          (864) 357-4530
+        </a>
+        <a href="/visualize.html" class="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-forest-dark bg-gradient-to-r from-gold to-gold-light rounded-full hover:shadow-lg hover:shadow-gold/20 hover:-translate-y-0.5 transition-all duration-300 no-underline">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          AI Visualizer
+        </a>
+      </div>
+
+      <button id="menu-toggle" class="lg:hidden text-white text-2xl p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Open menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-black/50 backdrop-blur-2xl">
+    <div class="px-4 py-4 space-y-1">
+      <a href="/#services" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">Services</a>
+      <a href="/#gallery" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">Gallery</a>
+      <a href="/#testimonials" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">Reviews</a>
+      <a href="/#about" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">About</a>
+      <a href="/#faq" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">FAQ</a>
+      <a href="/#contact" class="block px-4 py-3 text-base font-light text-white/85 hover:text-white hover:bg-white/8 rounded-lg transition-all no-underline tracking-wide">Contact</a>
+      <div class="pt-4 border-t border-white/10 mt-3">
+        <a href="tel:+18643574530" class="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium text-white border border-white/20 rounded-full hover:bg-white/10 transition-all no-underline">
+          <i class="fa-solid fa-phone"></i> (864) 357-4530
+        </a>
+        <a href="/visualize.html" class="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold text-forest-dark bg-gradient-to-r from-gold to-gold-light rounded-full hover:shadow-lg transition-all no-underline mt-2">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> AI Visualizer
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="main-content" class="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=85'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/50"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/15 border border-white/20 text-white/90 text-xs font-semibold tracking-widest uppercase mb-8 backdrop-blur-sm animate-fade-up" style="animation-delay: 100ms">
+      <i class="fa-solid fa-file-invoice text-gold-light"></i>
+      Free — No Obligation
+    </span>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-white mb-6 leading-tight animate-fade-up" style="text-shadow: 0 2px 20px rgba(0,0,0,0.5); animation-delay: 200ms">Get Your Free Estimate</h1>
+    <p class="text-white/85 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-light animate-fade-up" style="text-shadow: 0 1px 8px rgba(0,0,0,0.5); animation-delay: 300ms">
+      No obligation — honest pricing from your local landscaping team. Fill out the form below and we'll call within 24 hours.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== PROGRESS BAR ==================== -->
+<div class="bg-white border-b border-gray-100 sticky top-16 lg:top-[72px] z-[50]">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-5">
+      <!-- Step 1 -->
+      <div class="step-indicator active flex items-center gap-2 sm:gap-3" data-step="1">
+        <span class="step-dot w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-gray-200 bg-white text-gray-400 flex items-center justify-center text-sm font-bold transition-all duration-300">1</span>
+        <span class="step-text text-xs sm:text-sm text-gray-400 font-medium transition-all duration-300 hidden sm:inline">Contact Info</span>
+      </div>
+      <div class="flex-1 h-1 bg-gray-200 mx-2 sm:mx-4 rounded-full overflow-hidden transition-all duration-500" data-progress="1">
+        <div class="progress-bar-segment h-full w-0 bg-gold transition-all duration-500 rounded-full"></div>
+      </div>
+      <!-- Step 2 -->
+      <div class="step-indicator flex items-center gap-2 sm:gap-3" data-step="2">
+        <span class="step-dot w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-gray-200 bg-white text-gray-400 flex items-center justify-center text-sm font-bold transition-all duration-300">2</span>
+        <span class="step-text text-xs sm:text-sm text-gray-400 font-medium transition-all duration-300 hidden sm:inline">Project Details</span>
+      </div>
+      <div class="flex-1 h-1 bg-gray-200 mx-2 sm:mx-4 rounded-full overflow-hidden transition-all duration-500" data-progress="2">
+        <div class="progress-bar-segment h-full w-0 bg-gold transition-all duration-500 rounded-full"></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="step-indicator flex items-center gap-2 sm:gap-3" data-step="3">
+        <span class="step-dot w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-gray-200 bg-white text-gray-400 flex items-center justify-center text-sm font-bold transition-all duration-300">3</span>
+        <span class="step-text text-xs sm:text-sm text-gray-400 font-medium transition-all duration-300 hidden sm:inline">Review & Submit</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FORM ==================== -->
+<!-- GA4 TRACKING: Add your Google Analytics 4 Measurement ID -->
+<!-- Conversion event: fire gtag('event', 'estimate_form_submit', { ... }) -->
+<!-- FB PIXEL: fire fbq('track', 'Lead', { content_name: 'estimate_request' }) -->
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+  <form id="estimate-form" action="https://formsubmit.co/redwoodlandscapingupstate@gmail.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="New estimate request — Redwood Landscaping website (full form)">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://redwood-site-jade.vercel.app/thanks.html">
+
+    <!-- ========== STEP 1: Contact Info ========== -->
+    <div class="form-step active bg-cream rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100" data-form-step="1">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="w-10 h-10 rounded-full bg-forest text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">1</span>
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-forest">Your Contact Information</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="est-name" class="block text-sm font-medium text-[#555] mb-2">Full Name <span class="text-red-400">*</span></label>
+          <input type="text" id="est-name" name="name" placeholder="Your full name" required
+            class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] placeholder:text-gray-400 font-body">
+        </div>
+        <div>
+          <label for="est-email" class="block text-sm font-medium text-[#555] mb-2">Email <span class="text-red-400">*</span></label>
+          <input type="email" id="est-email" name="email" placeholder="your@email.com" required
+            class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] placeholder:text-gray-400 font-body">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="est-phone" class="block text-sm font-medium text-[#555] mb-2">Phone <span class="font-light text-[#999]">(optional)</span></label>
+          <input type="tel" id="est-phone" name="phone" placeholder="(864) 555-0123"
+            class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] placeholder:text-gray-400 font-body">
+        </div>
+        <div>
+          <label for="est-address" class="block text-sm font-medium text-[#555] mb-2">Address <span class="text-red-400">*</span></label>
+          <input type="text" id="est-address" name="address" placeholder="Street address, city" required
+            class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] placeholder:text-gray-400 font-body">
+        </div>
+      </div>
+
+      <fieldset class="border-none p-0 m-0 mb-5">
+        <legend class="block text-sm font-medium text-[#555] mb-3">Preferred Contact Method</legend>
+        <div class="flex flex-wrap gap-4">
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="contact_method" value="Phone" checked class="accent-forest w-4 h-4 cursor-pointer"> Phone
+          </label>
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="contact_method" value="Email" class="accent-forest w-4 h-4 cursor-pointer"> Email
+          </label>
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="contact_method" value="Either" class="accent-forest w-4 h-4 cursor-pointer"> Either
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="flex justify-end">
+        <button type="button" onclick="goToStep(2)" class="px-8 py-4 bg-gradient-to-r from-gold to-gold-light text-forest-dark font-bold text-lg rounded-full hover:shadow-xl hover:shadow-gold/20 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+          Next: Project Details <i class="fa-solid fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== STEP 2: Project Details ========== -->
+    <div class="form-step bg-cream rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100" data-form-step="2">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="w-10 h-10 rounded-full bg-forest text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">2</span>
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-forest">Project Details</h2>
+      </div>
+
+      <!-- Service Type Checkboxes -->
+      <fieldset class="border-none p-0 m-0 mb-6">
+        <legend class="block text-sm font-medium text-[#555] mb-4">Services Interested In <span class="font-light text-[#999]">(select all that apply)</span></legend>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Landscape Design" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-leaf text-forest block mb-1 text-lg"></i> Landscape Design
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Lawn Maintenance" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-seedling text-forest block mb-1 text-lg"></i> Lawn Care
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Hardscaping" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-cubes text-forest block mb-1 text-lg"></i> Hardscaping
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Tree Service" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-tree text-forest block mb-1 text-lg"></i> Tree Service
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Irrigation" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-droplet text-forest block mb-1 text-lg"></i> Irrigation
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Pressure Washing" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-shower text-forest block mb-1 text-lg"></i> Pressure Wash
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Seasonal Cleanup" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-fan text-forest block mb-1 text-lg"></i> Cleanup
+            </div>
+          </label>
+          <label class="relative cursor-pointer">
+            <input type="checkbox" name="services" value="Other / Multiple" class="service-checkbox">
+            <div class="service-tile bg-white rounded-xl p-3 text-center text-sm text-[#555] font-medium">
+              <i class="fa-solid fa-ellipsis text-forest block mb-1 text-lg"></i> Other
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Project Description -->
+      <div class="mb-5">
+        <label for="est-description" class="block text-sm font-medium text-[#555] mb-2">Project Description <span class="font-light text-[#999]">(what do you need done?)</span></label>
+        <textarea id="est-description" name="description" rows="4" placeholder="Tell us about your project — the more detail, the better we can prepare…"
+          class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] placeholder:text-gray-400 font-body resize-y"></textarea>
+      </div>
+
+      <!-- Timeline -->
+      <fieldset class="border-none p-0 m-0 mb-5">
+        <legend class="block text-sm font-medium text-[#555] mb-3">Project Timeline</legend>
+        <div class="flex flex-wrap gap-4">
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="timeline" value="ASAP" checked class="accent-forest w-4 h-4 cursor-pointer"> ASAP
+          </label>
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="timeline" value="1-2 months" class="accent-forest w-4 h-4 cursor-pointer"> 1–2 months
+          </label>
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="timeline" value="3-6 months" class="accent-forest w-4 h-4 cursor-pointer"> 3–6 months
+          </label>
+          <label class="flex items-center gap-2 text-sm text-[#555] cursor-pointer font-light">
+            <input type="radio" name="timeline" value="Just browsing" class="accent-forest w-4 h-4 cursor-pointer"> Just browsing
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- Budget Range -->
+      <div class="mb-5">
+        <label for="est-budget" class="block text-sm font-medium text-[#555] mb-2">Budget Range <span class="font-light text-[#999]">(optional — helps us prepare the right options)</span></label>
+        <select id="est-budget" name="budget"
+          class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] font-body appearance-none cursor-pointer">
+          <option value="">Prefer not to say</option>
+          <option>Under $500</option>
+          <option>$500 – $1,500</option>
+          <option>$1,500 – $5,000</option>
+          <option>$5,000 – $15,000</option>
+          <option>$15,000+</option>
+        </select>
+      </div>
+
+      <!-- How Did You Hear About Us? -->
+      <div class="mb-5">
+        <label for="est-source" class="block text-sm font-medium text-[#555] mb-2">How did you hear about us?</label>
+        <select id="est-source" name="source"
+          class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-xl focus:border-forest focus:ring-4 focus:ring-forest/10 outline-none transition-all text-base text-[#333] font-body appearance-none cursor-pointer">
+          <option value="">Select one…</option>
+          <option>Google Search</option>
+          <option>Google Maps</option>
+          <option>Facebook</option>
+          <option>Nextdoor</option>
+          <option>Friend or Neighbor</option>
+          <option>Drove By / Saw Truck</option>
+          <option>Returning Customer</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="flex justify-between">
+        <button type="button" onclick="goToStep(1)" class="px-6 py-4 bg-white border-2 border-gray-200 text-[#555] font-medium rounded-full hover:border-forest hover:text-forest transition-all duration-300 cursor-pointer">
+          <i class="fa-solid fa-arrow-left mr-2"></i> Back
+        </button>
+        <button type="button" onclick="goToStep(3)" class="px-8 py-4 bg-gradient-to-r from-gold to-gold-light text-forest-dark font-bold text-lg rounded-full hover:shadow-xl hover:shadow-gold/20 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+          Next: Review <i class="fa-solid fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========== STEP 3: Review & Submit ========== -->
+    <div class="form-step bg-cream rounded-2xl p-8 sm:p-10 shadow-lg border border-gray-100" data-form-step="3">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">3</span>
+        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-forest">Review &amp; Submit</h2>
+      </div>
+
+      <p class="text-[#777] font-light mb-6">Please review your information below. Click "Submit Request" when ready.</p>
+
+      <!-- Summary Card -->
+      <div class="bg-white rounded-xl p-6 border border-gray-200 space-y-4 mb-8">
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Name</p>
+            <p class="text-[#444] font-medium" id="review-name">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Email</p>
+            <p class="text-[#444] font-medium" id="review-email">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Phone</p>
+            <p class="text-[#444] font-medium" id="review-phone">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Address</p>
+            <p class="text-[#444] font-medium" id="review-address">—</p>
+          </div>
+        </div>
+        <hr class="border-gray-100">
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Contact Method</p>
+            <p class="text-[#444] font-medium" id="review-contact">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Timeline</p>
+            <p class="text-[#444] font-medium" id="review-timeline">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Services</p>
+            <p class="text-[#444] font-medium" id="review-services">—</p>
+          </div>
+          <div>
+            <p class="text-[#999] font-light text-xs uppercase tracking-wide">Budget</p>
+            <p class="text-[#444] font-medium" id="review-budget">—</p>
+          </div>
+        </div>
+        <hr class="border-gray-100">
+        <div>
+          <p class="text-[#999] font-light text-xs uppercase tracking-wide mb-1">Project Description</p>
+          <p class="text-[#444] font-medium text-sm" id="review-description">—</p>
+        </div>
+        <div>
+          <p class="text-[#999] font-light text-xs uppercase tracking-wide mb-1">Heard About Us</p>
+          <p class="text-[#444] font-medium text-sm" id="review-source">—</p>
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <button type="button" onclick="goToStep(2)" class="px-6 py-4 bg-white border-2 border-gray-200 text-[#555] font-medium rounded-full hover:border-forest hover:text-forest transition-all duration-300 cursor-pointer">
+          <i class="fa-solid fa-arrow-left mr-2"></i> Back
+        </button>
+        <button type="submit" id="est-submit-btn"
+          class="px-8 py-4 bg-gradient-to-r from-gold to-gold-light text-forest-dark font-bold text-lg rounded-full hover:shadow-xl hover:shadow-gold/20 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+          <span id="est-submit-text"><i class="fa-solid fa-paper-plane mr-2"></i> Submit Request</span>
+          <span id="est-submit-spinner" class="hidden"><span class="spinner inline-block align-middle mr-2"></span> Submitting…</span>
+        </button>
+      </div>
+    </div>
+
+  </form>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-forest-dark text-white/80">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+    <div class="mb-8">
+      <p class="text-white font-heading font-bold text-xl mb-1 tracking-wide">REDWOOD</p>
+      <p class="text-white/50 font-light text-sm">Landscaping LLC</p>
+      <p class="text-white/40 text-sm mt-2 font-light">107 Dogwood Ct, Slater-Marietta, SC 29661</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-4 mb-8 text-sm">
+      <a href="tel:+18643574530" class="text-white/70 hover:text-gold-light transition-colors no-underline font-light">
+        <i class="fa-solid fa-phone mr-1"></i> (864) 357-4530
+      </a>
+      <span class="text-white/20">|</span>
+      <a href="mailto:redwoodlandscapingupstate@gmail.com" class="text-white/70 hover:text-gold-light transition-colors no-underline font-light">
+        <i class="fa-solid fa-envelope mr-1"></i> redwoodlandscapingupstate@gmail.com
+      </a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Slater</span>
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Marietta</span>
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Greenville</span>
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Travelers Rest</span>
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Simpsonville</span>
+      <span class="px-3 py-1 bg-white/10 text-white/60 text-xs rounded-full font-light">Five Forks</span>
+    </div>
+    <div class="text-xs text-white/25 font-light">
+      <p>&copy; 2026 Redwood Landscaping LLC. All rights reserved. | Licensed &amp; Insured | Serving Upstate South Carolina</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+  // Mobile menu toggle
+  (function() {
+    var toggle = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function() {
+        var isOpen = !menu.classList.contains('hidden');
+        if (isOpen) {
+          menu.classList.add('hidden');
+          toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          menu.classList.remove('hidden');
+          toggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.add('hidden');
+          toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  })();
+
+  // Multi-step form logic
+  var currentStep = 1;
+
+  function updateStepUI(step) {
+    // Update step indicators
+    for (var i = 1; i <= 3; i++) {
+      var indicator = document.querySelector('.step-indicator[data-step="' + i + '"]');
+      if (!indicator) continue;
+      indicator.classList.remove('active', 'done');
+      if (i < step) indicator.classList.add('done');
+      if (i === step) indicator.classList.add('active');
+    }
+    // Update progress bars
+    for (var j = 1; j <= 2; j++) {
+      var bar = document.querySelector('[data-progress="' + j + '"] .progress-bar-segment');
+      if (!bar) continue;
+      if (j < step) {
+        bar.style.width = '100%';
+        bar.classList.add('done');
+      } else {
+        bar.style.width = '0%';
+        bar.classList.remove('done');
+      }
+    }
+    // Show/hide form steps
+    document.querySelectorAll('.form-step').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    var target = document.querySelector('.form-step[data-form-step="' + step + '"]');
+    if (target) target.classList.add('active');
+
+    // Scroll to top of form
+    var formContainer = document.querySelector('main');
+    if (formContainer) {
+      formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  window.goToStep = function(step) {
+    // Validate step 1 fields before proceeding
+    if (currentStep === 1 && step > 1) {
+      var name = document.getElementById('est-name').value.trim();
+      var email = document.getElementById('est-email').value.trim();
+      var address = document.getElementById('est-address').value.trim();
+      var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!name || !emailValid || !address) {
+        if (!name) { document.getElementById('est-name').classList.add('border-red-400'); }
+        if (!emailValid) { document.getElementById('est-email').classList.add('border-red-400'); }
+        if (!address) { document.getElementById('est-address').classList.add('border-red-400'); }
+        // Remove error classes on input
+        ['est-name','est-email','est-address'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) {
+            el.addEventListener('input', function() { el.classList.remove('border-red-400'); }, { once: true });
+          }
+        });
+        return;
+      }
+    }
+
+    currentStep = step;
+    updateStepUI(step);
+
+    // If moving to step 3, populate review
+    if (step === 3) {
+      document.getElementById('review-name').textContent = document.getElementById('est-name').value.trim() || '—';
+      document.getElementById('review-email').textContent = document.getElementById('est-email').value.trim() || '—';
+      document.getElementById('review-phone').textContent = document.getElementById('est-phone').value.trim() || '—';
+      document.getElementById('review-address').textContent = document.getElementById('est-address').value.trim() || '—';
+
+      var contactMethod = document.querySelector('input[name="contact_method"]:checked');
+      document.getElementById('review-contact').textContent = contactMethod ? contactMethod.value : '—';
+
+      var timeline = document.querySelector('input[name="timeline"]:checked');
+      document.getElementById('review-timeline').textContent = timeline ? timeline.value : '—';
+
+      var services = document.querySelectorAll('input[name="services"]:checked');
+      var serviceList = [];
+      services.forEach(function(cb) { serviceList.push(cb.value); });
+      document.getElementById('review-services').textContent = serviceList.length ? serviceList.join(', ') : 'None selected';
+
+      var budget = document.getElementById('est-budget').value;
+      document.getElementById('review-budget').textContent = budget || 'Prefer not to say';
+
+      var desc = document.getElementById('est-description').value.trim();
+      document.getElementById('review-description').textContent = desc || '—';
+
+      var source = document.getElementById('est-source').value;
+      document.getElementById('review-source').textContent = source || '—';
+    }
+  };
+
+  // Form submit handler
+  document.getElementById('estimate-form').addEventListener('submit', function(e) {
+    var btn = document.getElementById('est-submit-btn');
+    var text = document.getElementById('est-submit-text');
+    var spinner = document.getElementById('est-submit-spinner');
+
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    btn.style.pointerEvents = 'none';
+    text.classList.add('hidden');
+    spinner.classList.remove('hidden');
+
+    // Analytics events (fire before form submits)
+    if (typeof gtag === 'function') {
+      gtag('event', 'estimate_form_submit', {
+        event_category: 'estimate',
+        event_label: 'full_form',
+        value: 1
+      });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'estimate_request_full_form' });
+    }
+  });
+
+  // Remove red borders on input
+  ['est-name','est-email','est-address'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', function() { el.classList.remove('border-red-400'); });
+    }
+  });
+</script>
+
+</body>
+</html>
