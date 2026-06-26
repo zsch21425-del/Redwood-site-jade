@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>wearebrand — Operating Efficiently</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #080c14;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ─── Canvas Particle Grid ──────────────────────────────────── */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── Content Layer ─────────────────────────────────────────── */
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ─── Typography ────────────────────────────────────────────── */
+    .hero-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .hero-headline .accent {
+      background: linear-gradient(135deg, #4dc9f6, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subhead {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      max-width: 520px;
+      margin-top: 24px;
+    }
+
+    /* ─── Interactive Glow Orb ──────────────────────────────────── */
+    .orb {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(77, 201, 246, 0.4);
+      box-shadow:
+        0 0 20px rgba(77, 201, 246, 0.3),
+        0 0 60px rgba(77, 201, 246, 0.15),
+        inset 0 0 20px rgba(77, 201, 246, 0.1);
+      animation: orb-pulse 3s ease-in-out infinite;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .orb:hover {
+      border-color: rgba(77, 201, 246, 0.8);
+      box-shadow:
+        0 0 40px rgba(77, 201, 246, 0.5),
+        0 0 100px rgba(77, 201, 246, 0.25),
+        inset 0 0 30px rgba(77, 201, 246, 0.2);
+    }
+
+    @keyframes orb-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(77,201,246,0.3), 0 0 60px rgba(77,201,246,0.15); }
+      50% { box-shadow: 0 0 35px rgba(77,201,246,0.45), 0 0 90px rgba(77,201,246,0.25); }
+    }
+
+    /* ─── CTA ───────────────────────────────────────────────────── */
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .btn {
+      padding: 14px 32px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .btn-primary {
+      background: rgba(77, 201, 246, 0.15);
+      border-color: rgba(77, 201, 246, 0.3);
+    }
+    .btn-primary:hover {
+      background: rgba(77, 201, 246, 0.25);
+      border-color: rgba(77, 201, 246, 0.5);
+    }
+
+    /* ─── Mobile ────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .content { padding: 48px 24px; }
+      .orb { display: none; }
+      .cta-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="content">
+    <p class="hero-label">wearebrand</p>
+    <h1 class="hero-headline">
+      Operating<br>
+      <span class="accent">Efficiently,</span>
+    </h1>
+    <h1 class="hero-headline" style="margin-top: 0;">
+      Leading With<br>
+      <span class="accent">Innovation.</span>
+    </h1>
+    <p class="hero-subhead">
+      We monitor and manage a diverse portfolio of products and services across global markets — delivering top-quality execution in every sector we serve.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary">Explore Services →</a>
+      <a href="#" class="btn">Our Portfolio</a>
+    </div>
+    <div class="orb" title="Learn more"></div>
+  </div>
+
+  <script>
+    // Particle grid network — Canvas API
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 80;
+    const CONNECT_DIST = 140;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Particle {
+      constructor() {
+        this.reset();
+        this.y = Math.random() * canvas.height;
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -10;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = 0.3 + Math.random() * 0.4;
+        this.radius = 1 + Math.random() * 1.5;
+        this.opacity = 0.2 + Math.random() * 0.4;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.y > canvas.height + 10 || this.x < -10 || this.x > canvas.width + 10) {
+          this.reset();
+          this.y = -10;
+        }
+      }
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(77, 201, 246, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const p = new Particle();
+      p.y = Math.random() * canvas.height;
+      particles.push(p);
+    }
+
+    let mouseX = canvas.width / 2;
+    let mouseY = canvas.height / 2;
+    window.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update + draw particles
+      for (const p of particles) {
+        p.update();
+        p.draw(ctx);
+      }
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            const alpha = (1 - dist / CONNECT_DIST) * 0.12;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(77, 201, 246, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+</body>
+</html>
