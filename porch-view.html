@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Porch View — Redwood Landscaping</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      overflow: hidden;
+      height: 100vh;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ─── Sky ─────────────────────────────────────────────────── */
+    .sky {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        #5b8cce 0%,      /* deep sky blue */
+        #89b4e8 30%,     /* mid sky */
+        #b8d4f0 55%,     /* hazy blue */
+        #e8dcc8 75%,     /* warm horizon */
+        #f5e6c8 90%,     /* golden hour */
+        #e8c878 100%     /* sunset glow at tree line */
+      );
+    }
+
+    /* ─── Clouds ──────────────────────────────────────────────── */
+    .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-1 {
+      width: 180px; height: 50px;
+      top: 8%; left: -200px;
+      animation: cloud-drift 45s linear infinite;
+    }
+    .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+    .cloud-1::after  { width: 60px; height: 60px; top: -25px; left: 100px; }
+
+    .cloud-2 {
+      width: 140px; height: 40px;
+      top: 18%; left: -160px;
+      animation: cloud-drift 55s linear 10s infinite;
+      opacity: 0.6;
+    }
+    .cloud-2::before { width: 60px; height: 60px; top: -30px; left: 25px; }
+    .cloud-2::after  { width: 50px; height: 50px; top: -20px; left: 80px; }
+
+    .cloud-3 {
+      width: 200px; height: 45px;
+      top: 5%; left: -240px;
+      animation: cloud-drift 60s linear 25s infinite;
+      opacity: 0.5;
+    }
+    .cloud-3::before { width: 90px; height: 90px; top: -45px; left: 40px; }
+    .cloud-3::after  { width: 70px; height: 70px; top: -30px; left: 120px; }
+
+    @keyframes cloud-drift {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(100vw + 400px)); }
+    }
+
+    /* ─── Sun glow ────────────────────────────────────────────── */
+    .sun {
+      position: absolute;
+      top: 55%;
+      right: 15%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, 
+        rgba(255,220,150,0.9) 0%, 
+        rgba(255,200,100,0.4) 30%, 
+        transparent 70%);
+      border-radius: 50%;
+      filter: blur(15px);
+    }
+
+    /* ─── Distant treeline ────────────────────────────────────── */
+    .treeline {
+      position: absolute;
+      bottom: 42%;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: 
+        radial-gradient(ellipse 80px 100px at 8% 100%, #3a5a2a 60%, transparent 70%),
+        radial-gradient(ellipse 60px 80px at 15% 100%, #4a6a3a 60%, transparent 70%),
+        radial-gradient(ellipse 90px 110px at 25% 100%, #2d4d1d 60%, transparent 70%),
+        radial-gradient(ellipse 70px 90px at 35% 100%, #4a6a3a 60%, transparent 70%),
+        radial-gradient(ellipse 85px 105px at 48% 100%, #3a5a2a 60%, transparent 70%),
+        radial-gradient(ellipse 65px 85px at 58% 100%, #4a6a3a 60%, transparent 70%),
+        radial-gradient(ellipse 95px 115px at 70% 100%, #2d4d1d 60%, transparent 70%),
+        radial-gradient(ellipse 75px 95px at 82% 100%, #4a6a3a 60%, transparent 70%),
+        radial-gradient(ellipse 80px 100px at 93% 100%, #3a5a2a 60%, transparent 70%);
+    }
+
+    /* ─── Yard / grass ────────────────────────────────────────── */
+    .yard {
+      position: absolute;
+      bottom: 18%;
+      left: 0;
+      right: 0;
+      height: 25%;
+      background: linear-gradient(180deg,
+        #5a8a3a 0%,
+        #4a7a2a 30%,
+        #3a6a1a 100%
+      );
+    }
+
+    .grass-blade {
+      position: absolute;
+      bottom: 0;
+      width: 2px;
+      background: #6a9a4a;
+      border-radius: 50% 50% 0 0;
+      transform-origin: bottom center;
+      animation: grass-sway 3s ease-in-out infinite;
+    }
+    @keyframes grass-sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50%      { transform: rotate(5deg); }
+    }
+
+    /* ─── Fence ───────────────────────────────────────────────── */
+    .fence {
+      position: absolute;
+      bottom: 35%;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: 
+        /* horizontal rails */
+        linear-gradient(to bottom, 
+          transparent 0%,
+          #d4c4a0 25%, #c4b490 26%, #d4c4a0 27%,
+          transparent 28%, transparent 70%,
+          #d4c4a0 71%, #c4b490 72%, #d4c4a0 73%,
+          transparent 74%
+        ),
+        /* pickets */
+        repeating-linear-gradient(
+          90deg,
+          #d4c4a0 0px, #d4c4a0 6px,
+          #e8d8b0 6px, #e8d8b0 8px,
+          #c4b490 8px, #c4b490 10px,
+          transparent 10px, transparent 40px
+        );
+    }
+
+    /* ─── Trees (foreground, animated) ────────────────────────── */
+    .tree {
+      position: absolute;
+      bottom: 18%;
+      transform-origin: bottom center;
+      animation: tree-sway 4s ease-in-out infinite;
+    }
+    @keyframes tree-sway {
+      0%, 100% { transform: rotate(-1deg); }
+      50%      { transform: rotate(1deg); }
+    }
+
+    .tree-trunk {
+      width: 18px;
+      height: 180px;
+      background: linear-gradient(90deg, #5a3a1a, #6a4a2a, #5a3a1a);
+      border-radius: 4px 4px 0 0;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .tree-leaves {
+      position: absolute;
+      bottom: 160px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: leaf-sway 2.5s ease-in-out infinite;
+    }
+    @keyframes leaf-sway {
+      0%, 100% { transform: translateX(-50%) rotate(-2deg); }
+      50%      { transform: translateX(-50%) rotate(2deg); }
+    }
+
+    .leaf-cluster {
+      position: absolute;
+      background: radial-gradient(ellipse, #4a8a2a 40%, #3a6a1a 100%);
+      border-radius: 50%;
+    }
+    .leaf-cluster.highlight {
+      background: radial-gradient(ellipse, #5a9a3a 40%, #4a8a2a 100%);
+    }
+
+    /* Tree 1 — left */
+    .tree-1 { left: 10%; }
+    .tree-1 .leaf-cluster:nth-child(1) { width: 90px; height: 80px; left: -35px; top: -50px; }
+    .tree-1 .leaf-cluster:nth-child(2) { width: 70px; height: 65px; left: -15px; top: -65px; }
+    .tree-1 .leaf-cluster:nth-child(3) { width: 80px; height: 70px; left: -40px; top: -35px; }
+    .tree-1 .leaf-cluster:nth-child(4) { width: 50px; height: 45px; left: 5px; top: -55px; }
+
+    /* Tree 2 — right, taller */
+    .tree-2 { right: 8%; }
+    .tree-2 .tree-trunk { height: 220px; width: 22px; }
+    .tree-2 .tree-leaves { bottom: 200px; }
+    .tree-2 .leaf-cluster:nth-child(1) { width: 110px; height: 95px; left: -40px; top: -60px; }
+    .tree-2 .leaf-cluster:nth-child(2) { width: 85px; height: 75px; left: -10px; top: -75px; }
+    .tree-2 .leaf-cluster:nth-child(3) { width: 95px; height: 85px; left: -50px; top: -40px; }
+    .tree-2 .leaf-cluster:nth-child(4) { width: 60px; height: 50px; left: 15px; top: -65px; }
+    .tree-2 .leaf-cluster:nth-child(5) { width: 55px; height: 48px; left: -20px; top: -30px; }
+
+    /* Tree 3 — far left, smaller */
+    .tree-3 { left: 0%; }
+    .tree-3 .tree-trunk { height: 130px; width: 14px; }
+    .tree-3 .tree-leaves { bottom: 115px; }
+    .tree-3 .leaf-cluster:nth-child(1) { width: 70px; height: 60px; left: -25px; top: -40px; }
+    .tree-3 .leaf-cluster:nth-child(2) { width: 55px; height: 50px; left: -5px; top: -50px; }
+    .tree-3 .leaf-cluster:nth-child(3) { width: 60px; height: 55px; left: -30px; top: -25px; }
+
+    /* ─── Porch ───────────────────────────────────────────────── */
+    .porch {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 20%;
+    }
+    .porch-deck {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          #8a6a4a 0px, #8a6a4a 3px,
+          #7a5a3a 3px, #7a5a3a 6px,
+          #6a4a2a 6px, #6a4a2a 9px,
+          #7a5a3a 9px, #7a5a3a 12px,
+          #8a6a4a 12px, #8a6a4a 15px
+        );
+    }
+    .porch-deck::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 30%, rgba(0,0,0,0.1) 100%);
+    }
+    .porch-railing {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 45%;
+    }
+    .porch-railing .rail-top {
+      position: absolute;
+      top: 0; left: 5%; right: 5%;
+      height: 8px;
+      background: linear-gradient(0deg, #6a4a2a, #9a7a5a, #6a4a2a);
+      border-radius: 4px;
+    }
+    .porch-railing .rail-bottom {
+      position: absolute;
+      bottom: 15%; left: 5%; right: 5%;
+      height: 6px;
+      background: linear-gradient(0deg, #6a4a2a, #8a6a4a, #6a4a2a);
+      border-radius: 3px;
+    }
+    .porch-balusters {
+      position: absolute;
+      top: 8px; left: 5%; right: 5%; bottom: 21%;
+      background: repeating-linear-gradient(
+        90deg,
+        #7a5a3a 0px, #8a6a4a 4px, #7a5a3a 5px, #7a5a3a 8px,
+        transparent 8px, transparent 70px
+      );
+    }
+
+    /* ─── Birds ───────────────────────────────────────────────── */
+    .bird {
+      position: absolute;
+      animation: bird-fly linear infinite;
+    }
+    .bird svg {
+      width: 30px;
+      height: auto;
+    }
+
+    @keyframes bird-fly {
+      0%   { transform: translate(0, 0) scaleX(1); }
+      20%  { transform: translate(20vw, -30px) scaleX(1); }
+      40%  { transform: translate(40vw, -10px) scaleX(1); }
+      60%  { transform: translate(60vw, -40px) scaleX(1); }
+      80%  { transform: translate(80vw, -15px) scaleX(1); }
+      100% { transform: translate(100vw, -25px) scaleX(1); }
+    }
+
+    .bird-1 {
+      top: 25%;
+      animation: bird-fly 12s linear infinite;
+      animation-delay: 0s;
+    }
+    .bird-2 {
+      top: 20%;
+      animation: bird-fly 14s linear infinite;
+      animation-delay: 4s;
+      opacity: 0.8;
+    }
+    .bird-3 {
+      top: 30%;
+      animation: bird-fly 10s linear infinite;
+      animation-delay: 8s;
+    }
+    .bird-4 {
+      top: 15%;
+      animation: bird-fly 16s linear infinite;
+      animation-delay: 2s;
+      opacity: 0.7;
+    }
+    .bird-5 {
+      top: 22%;
+      animation: bird-fly 11s linear infinite;
+      animation-delay: 6s;
+    }
+
+    /* ─── Butterfly ───────────────────────────────────────────── */
+    .butterfly {
+      position: absolute;
+      animation: butterfly-path 8s ease-in-out infinite;
+      font-size: 20px;
+    }
+    @keyframes butterfly-path {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      15%  { transform: translate(12vw, -60px) rotate(10deg); }
+      30%  { transform: translate(25vw, -20px) rotate(-5deg); }
+      45%  { transform: translate(35vw, -80px) rotate(8deg); }
+      60%  { transform: translate(50vw, -40px) rotate(-10deg); }
+      75%  { transform: translate(65vw, -70px) rotate(5deg); }
+      90%  { transform: translate(80vw, -30px) rotate(-3deg); }
+      100% { transform: translate(100vw, -50px) rotate(0deg); }
+    }
+
+    /* ─── Overlay: warm vignette ───────────────────────────────── */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%);
+      pointer-events: none;
+    }
+
+    /* ─── UI Overlay ──────────────────────────────────────────── */
+    .ui-overlay {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+    }
+    .ui-overlay h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .ui-overlay p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    .ui-overlay .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: -apple-system, system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .ui-overlay .btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <!-- Sky -->
+    <div class="sky"></div>
+
+    <!-- Sun -->
+    <div class="sun"></div>
+
+    <!-- Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- Birds -->
+    <div class="bird bird-1">
+      <svg viewBox="0 0 60 40" fill="none">
+        <path d="M0 20 Q20 0, 30 20 Q40 0, 60 20" stroke="#2a2a2a" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div class="bird bird-2">
+      <svg viewBox="0 0 50 35" fill="none">
+        <path d="M0 18 Q15 2, 25 18 Q35 2, 50 18" stroke="#3a3a3a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="bird bird-3">
+      <svg viewBox="0 0 40 30" fill="none">
+        <path d="M0 15 Q12 0, 20 15 Q28 0, 40 15" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="bird bird-4">
+      <svg viewBox="0 0 55 38" fill="none">
+        <path d="M0 19 Q18 3, 28 19 Q38 3, 55 19" stroke="#2a2a2a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="bird bird-5">
+      <svg viewBox="0 0 45 32" fill="none">
+        <path d="M0 16 Q14 2, 22 16 Q30 2, 45 16" stroke="#3a3a3a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Butterfly -->
+    <div class="butterfly" style="top: 55%;">🦋</div>
+
+    <!-- Distant treeline -->
+    <div class="treeline"></div>
+
+    <!-- Fence -->
+    <div class="fence"></div>
+
+    <!-- Yard -->
+    <div class="yard">
+      <!-- Grass blades -->
+      <div class="grass-blade" style="left:15%;height:30px;animation-delay:0s;"></div>
+      <div class="grass-blade" style="left:15.5%;height:25px;animation-delay:0.3s;"></div>
+      <div class="grass-blade" style="left:32%;height:35px;animation-delay:0.6s;"></div>
+      <div class="grass-blade" style="left:32.5%;height:28px;animation-delay:0.9s;"></div>
+      <div class="grass-blade" style="left:48%;height:32px;animation-delay:0.2s;"></div>
+      <div class="grass-blade" style="left:48.8%;height:22px;animation-delay:0.5s;"></div>
+      <div class="grass-blade" style="left:65%;height:38px;animation-delay:0.8s;"></div>
+      <div class="grass-blade" style="left:65.5%;height:26px;animation-delay:1.1s;"></div>
+      <div class="grass-blade" style="left:82%;height:30px;animation-delay:0.4s;"></div>
+      <div class="grass-blade" style="left:82.5%;height:24px;animation-delay:0.7s;"></div>
+    </div>
+
+    <!-- Trees (animated) -->
+    <div class="tree tree-1" style="animation-delay:0s;">
+      <div class="tree-leaves">
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster highlight"></div>
+        <div class="leaf-cluster"></div>
+      </div>
+      <div class="tree-trunk"></div>
+    </div>
+
+    <div class="tree tree-2" style="animation-delay:0.8s;">
+      <div class="tree-leaves">
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster highlight"></div>
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster highlight"></div>
+      </div>
+      <div class="tree-trunk"></div>
+    </div>
+
+    <div class="tree tree-3" style="animation-delay:1.6s;">
+      <div class="tree-leaves">
+        <div class="leaf-cluster"></div>
+        <div class="leaf-cluster highlight"></div>
+        <div class="leaf-cluster"></div>
+      </div>
+      <div class="tree-trunk"></div>
+    </div>
+
+    <!-- Porch -->
+    <div class="porch">
+      <div class="porch-railing">
+        <div class="rail-top"></div>
+        <div class="porch-balusters"></div>
+        <div class="rail-bottom"></div>
+      </div>
+      <div class="porch-deck"></div>
+    </div>
+
+    <!-- Vignette -->
+    <div class="vignette"></div>
+
+    <!-- Overlay text -->
+    <div class="ui-overlay">
+      <h2>Your Dream Yard is Waiting</h2>
+      <p>See what's possible — from this porch.</p>
+      <a href="#" class="btn">Visualize My Yard →</a>
+    </div>
+  </div>
+</body>
+</html>
