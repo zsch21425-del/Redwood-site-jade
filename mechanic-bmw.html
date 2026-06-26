@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upstate Mobile Mechanic — Your Mechanic Comes To You</title>
+  <style>
+    /* ─── BMW Design System tokens ─────────────────────────────────── */
+    :root {
+      --bg:      #ffffff;
+      --surface: #ffffff;
+      --fg:      #262626;
+      --muted:   #757575;
+      --border:  #bbbbbb;
+      --accent:  #1c69d4;
+      --focus:   #0653b6;
+
+      --font-display: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      --fs-h1: 60px;
+      --fs-h2: 32px;
+      --fs-h3: 22px;
+      --fs-body: 16px;
+      --fs-nav: 18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.15;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── BMW: Zero border-radius — EVERYTHING ─────────────────────── */
+    * { border-radius: 0 !important; }
+
+    /* ─── BMW: Dark Hero ───────────────────────────────────────────── */
+    .hero-bmw {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      overflow: hidden;
+    }
+    .hero-bmw .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+    }
+    .hero-bmw .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+    .hero-bmw .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 720px;
+      padding: 40px 24px;
+    }
+    .hero-bmw .bmw-eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #bbbbbb;
+      margin-bottom: 24px;
+    }
+    .hero-bmw h1 {
+      font-family: var(--font-display);
+      font-size: 60px;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+    .hero-bmw .hero-subhead {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.30;
+      color: #bbbbbb;
+      margin-bottom: 36px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-bmw .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── BMW Buttons ──────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.20;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: var(--focus); border-color: var(--focus); }
+    .btn-outline {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ─── BMW Navigation ───────────────────────────────────────────── */
+    .topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0; z-index: 10;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .topnav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topnav .logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .topnav nav { display: flex; gap: 32px; }
+    .topnav nav a {
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.30;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #bbbbbb;
+    }
+    .topnav nav a:hover { color: #ffffff; }
+    .topnav .nav-cta {
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .topnav .nav-cta:hover { background: var(--focus); }
+
+    /* ─── White Sections ───────────────────────────────────────────── */
+    .section-white {
+      padding: 100px 32px;
+      background: #ffffff;
+    }
+    .section-white .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section-white h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.30;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #262626;
+      margin-bottom: 12px;
+    }
+    .section-white .section-subhead {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.30;
+      color: #757575;
+      margin-bottom: 56px;
+      max-width: 480px;
+    }
+
+    /* ─── Feature Grid ─────────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .feature-item {
+      padding: 0;
+    }
+    .feature-item .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #262626;
+      margin-bottom: 20px;
+    }
+    .feature-item .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #1c69d4;
+    }
+    .feature-item h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #262626;
+      margin-bottom: 8px;
+    }
+    .feature-item p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.30;
+      color: #757575;
+    }
+
+    /* ─── CTA Strip ────────────────────────────────────────────────── */
+    .cta-strip {
+      padding: 120px 32px;
+      background: #f5f5f5;
+      text-align: center;
+    }
+    .cta-strip .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-strip h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.30;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #262626;
+      margin-bottom: 16px;
+    }
+    .cta-strip p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.30;
+      color: #757575;
+      margin-bottom: 32px;
+    }
+
+    /* ─── Footer ───────────────────────────────────────────────────── */
+    .footer {
+      padding: 48px 32px;
+      background: #1a1a1a;
+      color: #757575;
+      font-size: 13px;
+      line-height: 1.30;
+    }
+    .footer .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ─── Mobile ───────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-bmw h1 { font-size: 36px; }
+      .hero-bmw .hero-subhead { font-size: 15px; }
+      .hero-bmw .hero-actions { flex-direction: column; align-items: center; }
+      .features-grid { grid-template-columns: 1fr; gap: 32px; }
+      .section-white { padding: 64px 24px; }
+      .cta-strip { padding: 80px 24px; }
+      .topnav nav { display: none; }
+      .topnav-inner { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="topnav">
+    <div class="topnav-inner">
+      <span class="logo">Upstate Mechanic</span>
+      <nav>
+        <a href="#">Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      <button class="nav-cta">Get Quote</button>
+    </div>
+  </header>
+
+  <!-- Dark Hero — BMW showroom-style -->
+  <section class="hero-bmw">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="bmw-eyebrow">Serving Upstate SC</p>
+      <h1>Your Mechanic Comes to You</h1>
+      <p class="hero-subhead">Diagnostics, brakes, engines, transmissions — we bring the full shop to your driveway. Same-day service, dealer-grade tools, zero markup.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary">Get a Free Quote</button>
+        <button class="btn btn-outline">Call (864) 555-0190</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features — White Section -->
+  <section class="section-white">
+    <div class="container">
+      <h2>Three Things You'll Notice</h2>
+      <p class="section-subhead">The first ten minutes set us apart from every shop you've ever dealt with.</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>No Tow Truck Needed</h3>
+          <p>We come to your home, office, or wherever you're stuck. You never set foot in a waiting room again.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+          </div>
+          <h3>Same-Day Service</h3>
+          <p>Most jobs — diagnostics, brakes, alternators — are done in under two hours. You're back on the road before lunch.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Dealer-Grade Diagnostics</h3>
+          <p>Professional scan tools and OEM-level diagnostic equipment. We find the actual problem — not the one that pays best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Strip -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Ready to Skip the Shop?</h2>
+      <p>Tell us what's wrong and we'll give you a firm price before we turn a single wrench. No surprises, no upsells, no waiting room.</p>
+      <button class="btn btn-primary">Get Your Free Quote</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Upstate Mobile Mechanic</span>
+      <span>contact@upstatemechanic.com · (864) 555-0190</span>
+    </div>
+  </footer>
+
+</body>
+</html>
