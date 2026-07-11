@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Yard Visualizer — See Your Dream Yard | Redwood Landscaping</title>
 <meta name="description" content="Upload a photo of your yard and our AI will show you what it looks like with professional landscaping. Free — no obligation. Slater-Marietta SC.">
@@ -38,14 +41,17 @@
       var pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
       beforeClip.style.width = pct + '%'; handle.style.left = pct + '%';
     }
-    if (handle) {
-      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-      handle.addEventListener('touchstart', function(e) { dragging = true; e.preventDefault(); }, {passive: false});
+    function onDown(e) { dragging = true; e.preventDefault(); handle.setPointerCapture(e.pointerId); }
+    function onMove(e) { if (dragging) updateSlider(e.clientX); }
+    function onUp(e) { dragging = false; }
+    if (slider) {
+      slider.addEventListener('pointerdown', onDown);
+      slider.addEventListener('pointermove', onMove);
+      slider.addEventListener('pointerup', onUp);
+      slider.addEventListener('pointerleave', onUp);
+      slider.addEventListener('pointercancel', onUp);
+      slider.style.touchAction = 'none';
     }
-    document.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
-    document.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); });
-    document.addEventListener('mouseup', function() { dragging = false; });
-    document.addEventListener('touchend', function() { dragging = false; });
   })();
 </script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
@@ -226,10 +232,10 @@
       </div>
 
       <!-- Before/After Slider -->
-      <div id="ba-slider" class="relative w-full overflow-hidden rounded-3xl border-2 border-gold/20 bg-white select-none" style="touch-action:none; max-height:500px" role="img" aria-label="Before and after comparison">
+      <div id="ba-slider" class="relative w-full overflow-hidden rounded-3xl border-2 border-gold/20 bg-white select-none" style="max-height:500px" role="img" aria-label="Before and after comparison">
         <img id="result-after" src="" alt="Your transformed yard" class="w-full object-cover" style="max-height: 500px;">
         <div id="ba-before-clip" class="absolute inset-0 overflow-hidden" style="width: 50%;"><img id="result-before" src="" alt="Your original yard" class="absolute top-0 left-0 w-full object-cover" style="max-height: 500px; min-width: 100vw; max-width: none;"></div>
-        <div id="ba-handle" class="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10" style="touch-action:none; left:50%"><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-2xl border-2 border-gold/30 flex items-center justify-center"><svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 8l-7 7M9 8l7 7"/></svg></div></div>
+        <div id="ba-handle" class="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10" style="left:50%"><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-2xl border-2 border-gold/30 flex items-center justify-center"><svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 8l-7 7M9 8l7 7"/></svg></div></div>
         <div class="absolute top-3 left-3 bg-black/50 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm">🌿 Before</div>
         <div class="absolute top-3 right-3 bg-black/50 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm">✨ After</div>
       </div>
@@ -296,7 +302,7 @@
       <span class="text-white/20">|</span>
       <a href="mailto:redwoodlandscapingupstate@gmail.com" class="text-white/70 hover:text-gold-light transition-colors no-underline font-light"><i class="fa-solid fa-envelope mr-1"></i> redwoodlandscapingupstate@gmail.com</a>
     </div>
-    <p class="text-xs text-white/30 font-light">&copy; 2026 Redwood Landscaping LLC. All rights reserved. | Licensed &amp; Insured</p>
+    <p class="text-xs text-white/30 font-light">&copy; 2026 Redwood Landscaping LLC. All rights reserved. | Licensed &amp; Insured &middot; v3</p>
   </div>
 </footer>
 
