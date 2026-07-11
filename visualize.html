@@ -26,28 +26,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="output.css">
-<script>
-  (function() {
-    var slider = document.getElementById('ba-slider');
-    var handle = document.getElementById('ba-handle');
-    var beforeClip = document.getElementById('ba-before-clip');
-    var dragging = false;
-    function updateSlider(clientX) {
-      if (!slider || !handle || !beforeClip) return;
-      var rect = slider.getBoundingClientRect(), x = clientX - rect.left;
-      var pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
-      beforeClip.style.width = pct + '%'; handle.style.left = pct + '%';
-    }
-    if (handle) {
-      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-      handle.addEventListener('touchstart', function(e) { dragging = true; e.preventDefault(); });
-    }
-    document.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
-    document.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); });
-    document.addEventListener('mouseup', function() { dragging = false; });
-    document.addEventListener('touchend', function() { dragging = false; });
-  })();
-</script>
+
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://redwood-site-jade.vercel.app/#business","name":"Redwood Landscaping LLC","url":"https://redwood-site-jade.vercel.app/","telephone":"+1-864-357-4530","address":{"@type":"PostalAddress","streetAddress":"107 Dogwood Ct","addressLocality":"Slater-Marietta","addressRegion":"SC","postalCode":"29661","addressCountry":"US"}}
@@ -414,6 +393,28 @@ function resetForm(){
   var d=document.getElementById('dual-cta');if(d)d.classList.add('hidden');_sendOnlyUsed=false;
   window.scrollTo({top:0,behavior:'smooth'});
 }
+</script>
+<script>
+  (function() {
+    var slider = document.getElementById('ba-slider');
+    var handle = document.getElementById('ba-handle');
+    var beforeClip = document.getElementById('ba-before-clip');
+    var dragging = false;
+    function updateSlider(clientX) {
+      if (!slider || !handle || !beforeClip) return;
+      var rect = slider.getBoundingClientRect(), x = clientX - rect.left;
+      var pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
+      beforeClip.style.width = pct + '%'; handle.style.left = pct + '%';
+    }
+    if (handle) {
+      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+      handle.addEventListener('touchstart', function(e) { dragging = true; e.preventDefault(); });
+    }
+    document.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
+    document.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); });
+    document.addEventListener('mouseup', function() { dragging = false; });
+    document.addEventListener('touchend', function() { dragging = false; });
+  })();
 </script>
 </body>
 </html>
