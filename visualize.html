@@ -26,28 +26,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="output.css">
-<script>
-  (function() {
-    var slider = document.getElementById('ba-slider');
-    var handle = document.getElementById('ba-handle');
-    var beforeClip = document.getElementById('ba-before-clip');
-    var dragging = false;
-    function updateSlider(clientX) {
-      if (!slider || !handle || !beforeClip) return;
-      var rect = slider.getBoundingClientRect(), x = clientX - rect.left;
-      var pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
-      beforeClip.style.width = pct + '%'; handle.style.left = pct + '%';
-    }
-    if (handle) {
-      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-      handle.addEventListener('touchstart', function(e) { dragging = true; e.preventDefault(); });
-    }
-    document.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
-    document.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); });
-    document.addEventListener('mouseup', function() { dragging = false; });
-    document.addEventListener('touchend', function() { dragging = false; });
-  })();
-</script>
+
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://redwood-site-jade.vercel.app/#business","name":"Redwood Landscaping LLC","url":"https://redwood-site-jade.vercel.app/","telephone":"+1-864-357-4530","address":{"@type":"PostalAddress","streetAddress":"107 Dogwood Ct","addressLocality":"Slater-Marietta","addressRegion":"SC","postalCode":"29661","addressCountry":"US"}}
@@ -226,10 +205,10 @@
       </div>
 
       <!-- Before/After Slider -->
-      <div id="ba-slider" class="relative w-full overflow-hidden rounded-3xl border-2 border-gold/20 bg-white select-none" style="max-height: 500px;" role="img" aria-label="Before and after comparison">
-        <img id="result-after" src="" alt="Your transformed yard" class="w-full object-cover" style="max-height: 500px;">
-        <div id="ba-before-clip" class="absolute inset-0 overflow-hidden" style="width: 50%;"><img id="result-before" src="" alt="Your original yard" class="absolute top-0 left-0 w-full object-cover" style="max-height: 500px; min-width: 100vw; max-width: none;"></div>
-        <div id="ba-handle" class="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize z-10" style="left: 50%;"><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-2xl border-2 border-gold/30 flex items-center justify-center"><svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg></div></div>
+      <div id="ba-slider" class="relative w-full overflow-hidden rounded-3xl border-2 border-gold/20 bg-white select-none" style="max-height:500px;touch-action:none" role="img" aria-label="Before and after comparison">
+        <img id="result-after" src="" alt="Your transformed yard" class="w-full object-cover" style="max-height:500px">
+        <div id="ba-before-clip" class="absolute inset-0 overflow-hidden" style="width:50%"><img id="result-before" src="" alt="Your original yard" class="absolute top-0 left-0 w-full object-cover" style="max-height:500px;min-width:100vw;max-width:none"></div>
+        <div id="ba-handle" class="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10" style="left:50%"><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-2xl border-2 border-gold/30 flex items-center justify-center cursor-ew-resize"><svg class="w-4 h-4 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 6 L7 12 L15 18 M9 6 L17 12 L9 18"/></svg></div></div>
         <div class="absolute top-3 left-3 bg-black/50 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm">🌿 Before</div>
         <div class="absolute top-3 right-3 bg-black/50 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm">✨ After</div>
       </div>
@@ -414,6 +393,19 @@ function resetForm(){
   var d=document.getElementById('dual-cta');if(d)d.classList.add('hidden');_sendOnlyUsed=false;
   window.scrollTo({top:0,behavior:'smooth'});
 }
+</script>
+<script>
+(function(){
+  var s=document.getElementById('ba-slider');
+  if(!s)return;
+  var c=document.getElementById('ba-before-clip'),h=document.getElementById('ba-handle'),d=false;
+  function m(x){var r=s.getBoundingClientRect(),p=Math.max(2,Math.min(98,((x-r.left)/r.width)*100));c.style.width=p+'%';h.style.left=p+'%';}
+  s.addEventListener('pointerdown',function(e){d=true;s.setPointerCapture(e.pointerId);m(e.clientX);e.preventDefault();});
+  s.addEventListener('pointermove',function(e){if(d)m(e.clientX);});
+  s.addEventListener('pointerup',function(){d=false;});
+  s.addEventListener('pointerleave',function(){d=false;});
+  s.addEventListener('pointercancel',function(){d=false;});
+})();
 </script>
 </body>
 </html>
