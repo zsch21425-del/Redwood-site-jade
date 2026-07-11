@@ -38,14 +38,26 @@
       var pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
       beforeClip.style.width = pct + '%'; handle.style.left = pct + '%';
     }
-    if (handle) {
-      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-      handle.addEventListener('touchstart', function(e) { dragging = true; e.preventDefault(); }, {passive: false});
+    function onStart(e) {
+      dragging = true;
+      e.preventDefault();
     }
-    document.addEventListener('mousemove', function(e) { if (dragging) updateSlider(e.clientX); });
-    document.addEventListener('touchmove', function(e) { if (dragging) updateSlider(e.touches[0].clientX); }, {passive: false});
-    document.addEventListener('mouseup', function() { dragging = false; });
-    document.addEventListener('touchend', function() { dragging = false; });
+    function onMove(e) {
+      if (!dragging) return;
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      updateSlider(cx);
+    }
+    function onEnd(e) { dragging = false; }
+    if (slider) {
+      slider.addEventListener('mousedown', onStart);
+      slider.addEventListener('touchstart', onStart, {passive: false});
+      slider.addEventListener('mousemove', onMove);
+      slider.addEventListener('touchmove', onMove);
+      slider.addEventListener('mouseup', onEnd);
+      slider.addEventListener('mouseleave', onEnd);
+      slider.addEventListener('touchend', onEnd);
+      slider.addEventListener('touchcancel', onEnd);
+    }
   })();
 </script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌲</text></svg>">
