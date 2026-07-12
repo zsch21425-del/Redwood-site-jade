@@ -140,8 +140,8 @@ class handler(BaseHTTPRequestHandler):
             return
 
         content_length = int(self.headers.get("Content-Length", 0))
-        if content_length > 10_000_000:
-            self._respond(413, {"success": False, "error": "Request too large"})
+        if content_length > 4_000_000:
+            self._respond(413, {"success": False, "error": "Image too large. Please use a smaller photo."})
             return
 
         body = self.rfile.read(content_length)
