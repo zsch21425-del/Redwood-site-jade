@@ -5,8 +5,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import requests
 
-GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
+# Key is read at call time to pick up Vercel env var changes
+DEFAULT_GEMINI_KEY = ""
 
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587
@@ -38,8 +38,11 @@ Return the transformed image showing the completed landscaping work."""
 
 def call_gemini(image_base64, prompt):
     """Call Gemini 2.5 Flash for image-to-image generation."""
-    if not GEMINI_KEY:
+    key = os.environ.get("GEMINI_API_KEY", DEFAULT_GEMINI_KEY)
+    if not key:
         raise Exception("GEMINI_API_KEY not configured")
+    
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={key}"
     
     payload = {
         "contents": [{
@@ -53,7 +56,7 @@ def call_gemini(image_base64, prompt):
         }
     }
     
-    resp = requests.post(GEMINI_URL, json=payload, timeout=90)
+    resp = requests.post(url, json=payload, timeout=90)
     data = resp.json()
     
     if "candidates" not in data:
@@ -137,8 +140,8 @@ class handler(BaseHTTPRequestHandler):
             return
 
         content_length = int(self.headers.get("Content-Length", 0))
-        if content_length > 10_000_000:
-            self._respond(413, {"success": False, "error": "Request too large"})
+        if content_length > 4_000_000:
+            self._respond(413, {"success": False, "error": "Image too large. Please use a smaller photo."})
             return
 
         body = self.rfile.read(content_length)

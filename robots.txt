@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /mechanic-bmw.html
+Disallow: /particle-demo.html
+Disallow: /porch-view.html
+Disallow: /deploy/
+
+Sitemap: https://redwood-site-jade.vercel.app/sitemap.xml
