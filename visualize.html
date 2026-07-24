@@ -101,9 +101,13 @@
   </section>
 
   <!-- Built by Local Launch -->
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-    <a href="https://local-launch-site.vercel.app" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 text-xs text-[#999] hover:text-forest font-light transition-colors no-underline">
-      <i class="fa-solid fa-code"></i> Web page built by Local Launch
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center">
+    <a href="https://local-launch-site.vercel.app" target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-[#666] font-medium hover:border-gold hover:text-forest hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 no-underline group">
+      <span class="w-6 h-6 rounded-full bg-forest-pale flex items-center justify-center text-xs group-hover:bg-forest group-hover:text-white transition-colors">
+        <i class="fa-solid fa-code"></i>
+      </span>
+      Web page and visualizer built by Local Launch
+      <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-[#ccc] group-hover:text-gold transition-colors"></i>
     </a>
   </div>
 
@@ -327,6 +331,29 @@ async function fileToBase64(f){return new Promise(function(r){var rd=new FileRea
 async function resizeImage(f,m){if(!m)m=1024;return new Promise(function(r){var i=new Image();i.onload=function(){var c=document.createElement('canvas'),w=i.width,h=i.height;if(w>m||h>m){var rt=Math.min(m/w,m/h);w=Math.round(w*rt);h=Math.round(h*rt);}c.width=w;c.height=h;c.getContext('2d').drawImage(i,0,0,w,h);URL.revokeObjectURL(i.src);r(c.toDataURL('image/jpeg',0.7));};i.onerror=function(){URL.revokeObjectURL(i.src);r(null);};i.src=URL.createObjectURL(f);});}
 function getYardPrompt(){return document.getElementById('yard-prompt').value.trim();}
 
+/* Download fix: huge base64 data-URLs silently fail as <a download> targets in Chrome (~2MB cap)
+   and on most mobile browsers. Convert the base64 image to a Blob and use an object URL instead. */
+function b64ToBlob(b64){var bin=atob(b64),len=bin.length,bytes=new Uint8Array(len);for(var i=0;i<len;i++)bytes[i]=bin.charCodeAt(i);var mime=(bytes[0]===0x89&&bytes[1]===0x50)?'image/png':'image/jpeg';return new Blob([bytes],{type:mime});}
+function setDownloadLink(b64){
+  var btn=document.getElementById('btn-download');
+  try{
+    var blob=b64ToBlob(b64);
+    if(window._afterBlobUrl)URL.revokeObjectURL(window._afterBlobUrl);
+    window._afterBlobUrl=URL.createObjectURL(blob);
+    window._afterBlob=blob;
+    btn.href=window._afterBlobUrl;
+    btn.setAttribute('download','redwood_yard_visualization.'+(blob.type==='image/png'?'png':'jpg'));
+  }catch(e){btn.href='data:image/jpeg;base64,'+b64;}
+}
+/* On iOS Safari <a download> can be ignored — offer the native share sheet (Save Image) as a fallback. */
+document.getElementById('btn-download').addEventListener('click',function(ev){
+  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  if(isIOS&&window._afterBlob&&navigator.canShare){
+    var f=new File([window._afterBlob],this.getAttribute('download')||'redwood_yard_visualization.jpg',{type:window._afterBlob.type});
+    if(navigator.canShare({files:[f]})){ev.preventDefault();navigator.share({files:[f],title:'My Redwood yard visualization'}).catch(function(){});}
+  }
+});
+
 var btnGenerate=document.getElementById('btn-generate'),idleText=btnGenerate.querySelector('.btn-idle'),loadingText=btnGenerate.querySelector('.btn-loading-text'),_loadingInterval=null;
 var LOADING_PHASES=[{phase:'Analyzing your yard',detail:'Our AI is examining your photo to understand the layout.',bar:15},{phase:'Identifying features',detail:'Detecting grass, trees, structures, and open spaces.',bar:30},{phase:'Applying your design ideas',detail:'Adding the landscaping features you requested.',bar:55},{phase:'Refining the details',detail:'Making sure every element looks natural and realistic.',bar:75},{phase:'Rendering your dream yard',detail:'Almost there — putting the final touches on your transformation.',bar:90}];
 var _phaseIndex=0;
@@ -335,7 +362,7 @@ function showLoading(){document.getElementById('loading-overlay').classList.add(
 function hideLoading(){clearInterval(_loadingInterval);document.getElementById('loading-overlay').classList.remove('active');loadingText.style.display='none';idleText.style.display='flex';btnGenerate.disabled=false;btnGenerate.style.opacity='1';btnGenerate.style.pointerEvents='auto';}
 function showError(m){document.getElementById('error-msg').textContent=m;document.getElementById('error-box').classList.add('active');document.getElementById('error-box').scrollIntoView({behavior:'smooth',block:'center'});hideLoading();}
 function showResult(ob,ab,desc){
-  document.getElementById('result-before').src=ob;document.getElementById('result-after').src='data:image/jpeg;base64,'+ab;document.getElementById('btn-download').href='data:image/jpeg;base64,'+ab;
+  document.getElementById('result-before').src=ob;document.getElementById('result-after').src='data:image/jpeg;base64,'+ab;setDownloadLink(ab);
   document.getElementById('ba-before-clip').style.width='50%';document.getElementById('ba-handle').style.left='50%';
   document.getElementById('result-section').classList.add('active');document.getElementById('result-section').scrollIntoView({behavior:'smooth',block:'start'});
   if(desc){var d=document.getElementById('ai-description');d.innerHTML='<i class="fa-solid fa-robot mr-2 text-forest"></i> '+desc.replace(/\n/g,'<br>');d.style.display='block';}
@@ -386,7 +413,7 @@ function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php
 function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('Just visualized my dream yard with Redwood Landscaping\u2019s free AI tool \uD83C\uDF33 Try it: '+SHARE_PAGE_URL+' #RedwoodLandscaping #UpstateSC'),'_blank','width=600,height=400');}
 function shareLinkedIn(){window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(SHARE_PAGE_URL),'_blank','width=600,height=500');}
 function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(GENERAL_CAPTION),'_blank');}
-function downloadAfterImage(){return new Promise(function(r){var i=document.getElementById('result-after');if(!i||!i.src){r(null);return;}var a=document.createElement('a');a.href=i.src;a.download='redwood_yard_visualization.jpg';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){r(true);},300);});}
+function downloadAfterImage(){return new Promise(function(r){var btn=document.getElementById('btn-download'),href=window._afterBlobUrl||((document.getElementById('result-after')||{}).src);if(!href){r(null);return;}var a=document.createElement('a');a.href=href;a.download=(btn&&btn.getAttribute('download'))||'redwood_yard_visualization.jpg';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){r(true);},300);});}
 async function shareInstagram(){await downloadAfterImage();try{await navigator.clipboard.writeText(IG_CAPTION);showSocialToast('Image downloaded + caption copied! Post on IG \uD83D\uDCF8');}catch(e){showSocialToast('Image downloaded!');}}
 async function shareTikTok(){await downloadAfterImage();try{await navigator.clipboard.writeText(TT_CAPTION);showSocialToast('Image downloaded + caption copied! Post on TT \uD83C\uDFB5');}catch(e){showSocialToast('Image downloaded!');}}
 async function copyShareLink(){try{await navigator.clipboard.writeText(SHARE_PAGE_URL);showSocialToast('Link copied!');}catch(e){var ta=document.createElement('textarea');ta.value=SHARE_PAGE_URL;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showSocialToast('Link copied!');}}
